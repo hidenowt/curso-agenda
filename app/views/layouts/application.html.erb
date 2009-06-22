@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Agenda</title>
+    <%= javascript_include_tag :all, :cache => 'todos' %>
+  </head>
+  <body>
+    <%  [ :notice, :error ].each do |m| %>
+      <% unless flash[m].blank? %>
+        <div class="<%= m %>">
+          <%= flash[m] %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
+

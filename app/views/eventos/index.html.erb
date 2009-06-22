@@ -1,0 +1,33 @@
+<h2>Eventos</h2>
+
+<p> <%= link_to 'Novo Evento', new_evento_path %>
+<% unless @eventos.blank? %>
+
+  <%= will_paginate @eventos %>
+
+  <p>Encontrado(s) <%= @eventos.size %> registro(s).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th>Local</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for evento in @eventos %>
+        <tr id="<%= dom_id evento %>">
+          <td><%= evento.titulo %></td>
+          <td><%= evento.local %></td>
+          <td><%= evento.data_hora %></td>
+          <td><%= link_to 'Alterar', edit_evento_path(evento)%></td>
+          <td><%= link_to 'Excluir', evento, :confirm => 'Você tem certeza?',
+                                              :method => :delete %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem eventos cadastrados</p>
+<% end %>
+

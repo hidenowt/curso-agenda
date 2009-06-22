@@ -1,0 +1,21 @@
+<% form_for @evento, :builder => AgendaFormBuilder do |f| %>
+  <%= f.text_field :titulo %>
+  <%= f.text_area  :descricao %>
+  <%= f.text_field :local %>
+  <%= f.datetime_select :data_hora %>
+  <p>Contatos:</p>
+  <%= select_tag 'evento[contato_ids]',
+                          contatos_para_select( @evento.contato_ids ),
+                          :multiple => true %>
+  <p>Checkboxes:</br>
+    <% for contato in Contato.all %>
+      <%= check_box_tag 'evento[contato_ids]',
+            contato.id,
+            @evento.contato_ids.include?(contato.id) %>
+      <%= contato.nome %>
+      <br />
+    <% end %>
+  </p>
+  <%= f.submit %>
+<% end %>
+

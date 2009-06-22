@@ -1,0 +1,41 @@
+<h2>Contatos</h2>
+
+<p> <%= link_to 'Novo Contato', new_contato_path %>
+<% unless @contatos.blank? %>
+
+  <%= will_paginate @contatos %>
+
+  <p>Encontrado(s) <%= @contatos.size %> registro(s).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Celular</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for contato in @contatos %>
+        <tr id="<%= dom_id contato %>">
+          <td><%= contato.nome %></td>
+          <td><%= contato.email %></td>
+          <td><%= contato.telefone %></td>
+          <td><%= contato.celular %></td>
+          <td><%= link_to 'Alterar', edit_contato_path(contato)%></td>
+          <td><%= link_to 'Excluir', contato, :confirm => 'Você tem certeza?',
+                                              :method => :delete %>
+          </td>
+          <td><%= link_to_remote 'Excluir com ajax',
+                                  :url => {:action => 'destroy', :id => contato},
+                                  :method => :delete,
+                                  :confirm => 'Você tem certeza?' %>
+          </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Não existem contatos cadastrados</p>
+<% end %>
+

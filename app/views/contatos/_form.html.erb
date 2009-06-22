@@ -1,0 +1,14 @@
+<% form_for @contato, :builder => AgendaFormBuilder do |f| %>
+
+    <%= f.error_messages %>
+
+    <%= f.text_field :nome %>
+    <%= f.text_field :email %>
+    <%= f.text_field :celular %>
+    <%= f.text_field :telefone %>
+    <%= f.text_field :endereco %>
+
+    <%= f.submit %>
+
+<% end %>
+
