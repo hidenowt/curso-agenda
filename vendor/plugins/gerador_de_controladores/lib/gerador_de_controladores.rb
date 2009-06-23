@@ -30,10 +30,19 @@ module GeradorDeControladores
 
   def destroy
     @#{singular}.destroy
-    flash[:notice] = "Registro excluído com sucesso."
-    redirect_to do |format|
-      format.js if request.xhr?
-      format.html { redirect_to #{plural}_path }
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          page.visual_effect( :highlight, dom_id(@#{singular}), :duration => 2.0 )
+          page.delay( 2 ) do
+            page.remove( dom_id(@#{singular}) )
+          end
+        end
+      end
+      format.html do
+        flash[:notice] = "Registro excluído com sucesso."
+        redirect_to #{plural}_path
+      end
     end
   end
 

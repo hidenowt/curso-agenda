@@ -27,7 +27,7 @@
                                               :method => :delete %>
           </td>
           <td><%= link_to_remote 'Excluir com ajax',
-                                  :url => {:action => 'destroy', :id => contato},
+                                  :url => contato_url( contato ),
                                   :method => :delete,
                                   :confirm => 'Você tem certeza?' %>
           </td>
