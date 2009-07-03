@@ -3,6 +3,7 @@
   <%= f.text_area  :descricao %>
   <%= f.text_field :local %>
   <%= f.datetime_select :data_hora %>
+  <%= f.select :contato_ids, Contato.all.map { |c| [c.nome, c.id] }, :include_blank => true %>
   <p>Contatos:</p>
   <%= select_tag 'evento[contato_ids]',
                           contatos_para_select( @evento.contato_ids ),

@@ -12,7 +12,8 @@ class AgendaFormBuilder < ActionView::Helpers::FormBuilder
     def #{name}(field, *args)
       options = args.extract_options\!
       return super if options.delete(:disable_builder)
-      @template.content_tag(:p, field_label(field, options) << '<br/>' << super)
+      args << options
+      @template.content_tag(:p, field_label(field, options ) << '<br/>' << super)
     end
     !
   end
